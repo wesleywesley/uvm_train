@@ -31,7 +31,7 @@ class my_hello_world extends uvm_test;
             packet2.print();
 
             `uvm_info("TEST", "compare packet 1 :2", UVM_LOW)
-            _compare(packet1, packet2);
+            packet1._compare(packet2);
         end
 
         //clone
@@ -46,7 +46,7 @@ class my_hello_world extends uvm_test;
             packet4.print();
 
             `uvm_info("TEST", "compare packet 3 :4", UVM_LOW)
-            _compare(packet3, packet4);
+            packet3._compare(packet4);
         end
 
         //pack/unpack
@@ -64,7 +64,7 @@ class my_hello_world extends uvm_test;
             packet6.print();
 
             `uvm_info("TEST", "compare packet 5 :6", UVM_LOW)
-            _compare(packet5, packet6);
+            packet5._compare(packet6);
         end
 
     endtask : run_phase

@@ -33,11 +33,11 @@ class packet extends uvm_sequence_item;
         super.unpack_bytes(bytestream, packer);
     endfunction : unpack_bytes
 
-    function void _compare(packet p1, packet p2);
-        if (p2.compare(p1))
-            `uvm_info("compare", "p1 == p2", UVM_LOW)
+    function void _compare(packet p);
+        if (this.compare(p))
+            `uvm_info("compare", $psprintf("%s == %s", this.get_name(), p.get_name()), UVM_LOW)
         else
-            `uvm_info("compare", "p1 != p2", UVM_LOW)
+            `uvm_info("compare", $psprintf("%s != %s", this.get_name(), p.get_name()), UVM_LOW)
     endfunction : _compare
             
 
