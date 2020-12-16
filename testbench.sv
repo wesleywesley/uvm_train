@@ -5,6 +5,8 @@ import uvm_pkg::*;
 
 `include "transaction.sv"
 `include "my_hello_world.sv"
+`include "anlsp.sv"
+`include "anlsp_test.sv"
 
 
 module Testbench();
