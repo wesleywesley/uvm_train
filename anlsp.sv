@@ -14,10 +14,10 @@ class my_src extends uvm_component;
     endfunction
 
     task run_phase(uvm_phase phase);
-        packet anlsp_pkt = new("analysis_port_pkt");
+        packet anlsp_pkt = new("analysis_port_pkt"); // both this and the next sentence is worked
         //packet anlsp_pkt = packet::type_id::create("anlsp_pkt", this);
         super.run_phase(phase);
-        //packet anlsp_pkt = new("analysis_port_pkt");
+        //packet anlsp_pkt = new("analysis_port_pkt"); //this sentence should before super.run_phase ?
         void'(anlsp_pkt.randomize());
         anlsp.write(anlsp_pkt);
     endtask
