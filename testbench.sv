@@ -7,6 +7,10 @@ import uvm_pkg::*;
 `include "my_hello_world.sv"
 `include "anlsp.sv"
 `include "anlsp_test.sv"
+`include "my_driver.sv"
+`include "my_sequence.sv"
+`include "my_sequencer.sv"
+`include "triple.sv"
 
 
 module Testbench();
