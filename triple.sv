@@ -12,6 +12,12 @@ class triple_test extends uvm_test;
 
     function void build_phase(uvm_phase phase);
         super.build_phase (phase);
+           begin
+               virtual pktin_intf pkt_in;
+               if (!uvm_config_db#(virtual pktin_intf)::get(this, "", "packet_in", pkt_in))
+                   `uvm_error("GET_DB_ERR", $psprintf("%s fail to get pkt_in virtual interface!", this.get_full_name())) 
+           end
+           
            my_drv = new("my_drv", this);
            my_seq = new("my_seq");
            my_seqer = new("my_seqer", this);
