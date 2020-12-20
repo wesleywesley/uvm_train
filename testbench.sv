@@ -11,7 +11,10 @@ import uvm_pkg::*;
 `include "my_driver.sv"
 `include "my_sequence.sv"
 `include "my_sequencer.sv"
+`include "my_monitor.sv"
+`include "my_agent.sv"
 `include "triple.sv"
+`include "agent_test.sv"
 
 
 module Testbench();
@@ -71,5 +74,9 @@ module Testbench();
         //name string
         //instance
         uvm_config_db#(virtual pktin_intf)::set(null, "uvm_test_top", "packet_in", pkt_in);
+    end
+
+    initial begin
+        uvm_config_db#(int)::set(null, "path_to_agent", "is_active", UVM_ACTIVE);
     end
 endmodule

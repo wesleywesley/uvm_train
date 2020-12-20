@@ -1,3 +1,6 @@
+//v1: test for driver/sequencer/sequence
+//v2: test for interface get/set(from testbench.sv)
+
 class triple_test extends uvm_test;
 
     `uvm_component_utils(triple_test)
