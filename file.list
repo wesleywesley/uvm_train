@@ -1,12 +1,18 @@
 +incdir+$UVM_HOME/src
 +incdir+$PROJ_ROOT
 +incdir+$PROJ_ROOT/src/packet_pkg
++incdir+$PROJ_ROOT/src/mem_pkg
 +incdir+$PROJ_ROOT/src/datain_agt_pkg
++incdir+$PROJ_ROOT/src/dataout_agt_pkg
++incdir+$PROJ_ROOT/src/mem_agt_pkg
 +incdir+$PROJ_ROOT/src/test_pkg
 
 $UVM_HOME/src/uvm_pkg.sv
 $PROJ_ROOT/src/packet_pkg/packet_pkg.sv
+$PROJ_ROOT/src/mem_pkg/mem_pkg.sv
 $PROJ_ROOT/src/datain_agt_pkg/datain_agt_pkg.sv
+$PROJ_ROOT/src/dataout_agt_pkg/dataout_agt_pkg.sv
+$PROJ_ROOT/src/mem_agt_pkg/mem_agt_pkg.sv
 $PROJ_ROOT/src/test_pkg/test_pkg.sv
 
 $PROJ_ROOT/switch.v
