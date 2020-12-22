@@ -77,6 +77,6 @@ module Testbench();
     end
 
     initial begin
-        uvm_config_db#(int)::set(null, "path_to_agent", "is_active", UVM_ACTIVE);
+        //uvm_config_db#(int)::set(null, "*my_agt", "is_active", UVM_ACTIVE);
     end
 endmodule

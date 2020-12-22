@@ -22,7 +22,7 @@ class triple_test extends uvm_test;
                    `uvm_error("GET_DB_ERR", $psprintf("%s fail to get pkt_in virtual interface!", this.get_full_name())) 
            end
 
-           uvm_config_db#(virtual pktin_intf)::set(this, "*", "packet_in", pkt_in);
+           uvm_config_db#(virtual pktin_intf)::set(this, "my_drv", "packet_in", pkt_in);
            
            my_drv = new("my_drv", this);
            my_seq = new("my_seq");

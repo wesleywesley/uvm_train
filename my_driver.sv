@@ -16,12 +16,38 @@ class my_driver extends uvm_driver#(packet);
     endfunction
 
     task run_phase(uvm_phase phase);
+        
+        pkt_in.drv_cb.packet_valid <= 0;
+        pkt_in.drv_cb.data_in <= 0;
+
         forever begin
-            seq_item_port.get_next_item(req);
+            packet pkt;
+            seq_item_port.get_next_item(pkt);
+            //seq_item_port.get_next_item(req);
             $display("my_driver ------------------------->");
-            req.print();
-            #10;
+            pkt.print();
+            //req.print();
+            
+            drive_item(pkt);
             seq_item_port.item_done();
         end
+    endtask
+
+    virtual task drive_item(packet pkt);
+        byte unsigned m_bytes[];
+        pkt.pack_bytes(m_bytes);
+
+        @(pkt_in.drv_cb);
+
+        
+        for (int i = 0; i < m_bytes.size(); i++)begin 
+            pkt_in.drv_cb.packet_valid <= 1;
+            pkt_in.drv_cb.data_in <= m_bytes[i];
+            @(pkt_in.drv_cb);
+
+        end
+
+        pkt_in.drv_cb.packet_valid <= 0;
+        pkt_in.drv_cb.data_in <= 0;
     endtask
 endclass
