@@ -1,9 +1,9 @@
-class my_driver extends uvm_driver#(packet);
-    `uvm_component_utils(my_driver)
+class datain_driver extends uvm_driver#(packet);
+    `uvm_component_utils(datain_driver)
 
     virtual pktin_intf pkt_in;
 
-    function new(string name = "my_driver", uvm_component parent = null);
+    function new(string name = "datain_driver", uvm_component parent = null);
         super.new(name, parent);
     endfunction
 
@@ -24,7 +24,7 @@ class my_driver extends uvm_driver#(packet);
             packet pkt;
             seq_item_port.get_next_item(pkt);
             //seq_item_port.get_next_item(req);
-            $display("my_driver ------------------------->");
+            $display("dadtain_driver ------------------------->");
             pkt.print();
             //req.print();
             

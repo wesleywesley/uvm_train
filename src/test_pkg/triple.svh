@@ -5,9 +5,9 @@ class triple_test extends uvm_test;
 
     `uvm_component_utils(triple_test)
     
-    my_driver my_drv;
-    my_sequence my_seq;
-    my_sequencer my_seqer;
+    datain_driver datain_drv;
+    datain_sequence datain_seq;
+    datain_sequencer datain_seqer;
 
     virtual pktin_intf pkt_in;
     
@@ -22,21 +22,21 @@ class triple_test extends uvm_test;
                    `uvm_error("GET_DB_ERR", $psprintf("%s fail to get pkt_in virtual interface!", this.get_full_name())) 
            end
 
-           uvm_config_db#(virtual pktin_intf)::set(this, "my_drv", "packet_in", pkt_in);
+           uvm_config_db#(virtual pktin_intf)::set(this, "datain_drv", "packet_in", pkt_in);
            
-           my_drv = new("my_drv", this);
-           my_seq = new("my_seq");
-           my_seqer = new("my_seqer", this);
+           datain_drv = new("datain_drv", this);
+           datain_seq = new("datain_seq");
+           datain_seqer = new("datain_seqer", this);
     endfunction
 
     function void connect_phase(uvm_phase phase);
         super.connect_phase (phase);
-            my_drv.seq_item_port.connect(my_seqer.seq_item_export);
+            datain_drv.seq_item_port.connect(datain_seqer.seq_item_export);
     endfunction
 
     task run_phase(uvm_phase phase);
-        phase.raise_objection(this);//for my_sequence run body()
-        my_seq.start(my_seqer);//run body()
+        phase.raise_objection(this);//for datain_sequence run body()
+        datain_seq.start(datain_seqer);//run body()
         phase.drop_objection(this);
     endtask
 

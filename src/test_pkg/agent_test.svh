@@ -2,7 +2,7 @@ class agent_test extends uvm_test;
 
     `uvm_component_utils(agent_test)
     
-    my_agent my_agt;
+    datain_agent datain_agt;
     virtual pktin_intf pkt_in; 
 
     function new(string name, uvm_component parent);
@@ -19,21 +19,21 @@ class agent_test extends uvm_test;
 
         //how to transfer to lower level?
         //uvm_config_db#(virtual pktin_intf)::set(null, "uvm_test_top.*", "packet_in", pkt_in);
-        uvm_config_db#(virtual pktin_intf)::set(this, "my_agt.*", "packet_in", pkt_in);
-        uvm_config_db#(int)::set(this, "my_agt", "is_active", UVM_ACTIVE);
+        uvm_config_db#(virtual pktin_intf)::set(this, "datain_agt.*", "packet_in", pkt_in);
+        uvm_config_db#(int)::set(this, "datain_agt", "is_active", UVM_ACTIVE);
 
-        my_agt = new("my_agt", this);
+        datain_agt = new("datain_agt", this);
 
     endfunction
 
     task run_phase(uvm_phase phase);
-        phase.raise_objection(this);//for my_sequence run body()
+        phase.raise_objection(this);//for datain_sequence run body()
 
         #100;
 
         begin
-          my_sequence my_seq = new("my_seq");
-          my_seq.start(my_agt.my_seqer);//run body()
+          datain_sequence datain_seq = new("datain_seq");
+          datain_seq.start(datain_agt.datain_seqer);//run body()
         end
 
         #100;

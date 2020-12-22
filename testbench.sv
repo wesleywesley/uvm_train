@@ -1,20 +1,8 @@
-`include "uvm_macros.svh"
-`include "uvm_pkg.sv"
+//`include "uvm_macros.svh"
+//`include "uvm_pkg.sv"
 
 import uvm_pkg::*;
-
-`include "transaction.sv"
-`include "my_hello_world.sv"
-`include "anlsp.sv"
-`include "anlsp_test.sv"
-`include "interface.sv"
-`include "my_driver.sv"
-`include "my_sequence.sv"
-`include "my_sequencer.sv"
-`include "my_monitor.sv"
-`include "my_agent.sv"
-`include "triple.sv"
-`include "agent_test.sv"
+import test_pkg::*;
 
 
 module Testbench();

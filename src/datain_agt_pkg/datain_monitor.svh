@@ -1,4 +1,4 @@
-class my_monitor extends uvm_monitor;
+class datain_monitor extends uvm_monitor;
 
     typedef enum {
         IDLE = 0,
@@ -7,9 +7,9 @@ class my_monitor extends uvm_monitor;
 
     SM state;
 
-    `uvm_component_utils(my_monitor)
+    `uvm_component_utils(datain_monitor)
 
-    function new(string name = "my_monitor", uvm_component parent = null);
+    function new(string name = "datain_monitor", uvm_component parent = null);
         super.new(name, parent);
         state = IDLE;
     endfunction
@@ -51,7 +51,7 @@ class my_monitor extends uvm_monitor;
                         pkt_data_array[idx] = pkt_data_q[idx];
                     end
                     mon_pkt.unpack_bytes(pkt_data_array);
-                    $display("my_monitor ------------------------->");
+                    $display("datain_monitor ------------------------->");
                     mon_pkt.print();
 
                     begin
