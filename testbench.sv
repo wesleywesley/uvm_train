@@ -12,7 +12,7 @@ module Testbench();
     //logic packet_valid;
     //logic [7:0] data_in;
 
-    pktin_intf pkt_in(clk);
+    datain_intf pkt_in(clk);
 
     //initialize DUT
     switch switch_dut
@@ -61,7 +61,7 @@ module Testbench();
         //uvm test top, target
         //name string
         //instance
-        uvm_config_db#(virtual pktin_intf)::set(null, "uvm_test_top", "packet_in", pkt_in);
+        uvm_config_db#(virtual datain_intf)::set(null, "uvm_test_top", "packet_in", pkt_in);
     end
 
     initial begin

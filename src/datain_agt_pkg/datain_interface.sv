@@ -1,4 +1,4 @@
-interface pktin_intf #(parameter BW = 8)(input clk);
+interface datain_intf #(parameter BW = 8)(input clk);
     logic packet_valid;
     logic [7:0] data_in;
 
@@ -14,4 +14,4 @@ interface pktin_intf #(parameter BW = 8)(input clk);
         output data_in;
     endclocking
 
-endinterface :pktin_intf
+endinterface :datain_intf

@@ -1,4 +1,4 @@
-`include "interface.sv"
+`include "datain_interface.sv"
 
 package datain_agt_pkg;
 

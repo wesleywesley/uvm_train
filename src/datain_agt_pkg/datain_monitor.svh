@@ -14,13 +14,13 @@ class datain_monitor extends uvm_monitor;
         state = IDLE;
     endfunction
 
-    virtual pktin_intf pkt_in;
+    virtual datain_intf pkt_in;
     uvm_analysis_port#(packet) mon_analysis_port;
 
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         mon_analysis_port = new("mon_analysis_port", this);
-        if (!uvm_config_db#(virtual pktin_intf)::get(this, "", "packet_in", pkt_in)) begin
+        if (!uvm_config_db#(virtual datain_intf)::get(this, "", "packet_in", pkt_in)) begin
             `uvm_error("GET_DB_ERR", $psprintf("%s fail to get pkt_in virtual interface!", this.get_full_name())) 
         end
     endfunction

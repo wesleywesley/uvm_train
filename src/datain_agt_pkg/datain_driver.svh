@@ -1,7 +1,7 @@
 class datain_driver extends uvm_driver#(packet);
     `uvm_component_utils(datain_driver)
 
-    virtual pktin_intf pkt_in;
+    virtual datain_intf pkt_in;
 
     function new(string name = "datain_driver", uvm_component parent = null);
         super.new(name, parent);
@@ -10,7 +10,7 @@ class datain_driver extends uvm_driver#(packet);
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         //for triple.sv test, the followed 3 have to be commentted
-        if (!uvm_config_db#(virtual pktin_intf)::get(this, "", "packet_in", pkt_in)) begin
+        if (!uvm_config_db#(virtual datain_intf)::get(this, "", "packet_in", pkt_in)) begin
             `uvm_error("GET_DB_ERR", $psprintf("%s fail to get pkt_in virtual interface!", this.get_full_name())) 
         end
     endfunction
