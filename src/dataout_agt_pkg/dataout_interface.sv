@@ -1,4 +1,4 @@
-interface dataout_intf #(parameter BW = 8)(input clk);
+interface dataout_intf #(parameter BW = 10)(input clk);
     logic ready;
     logic read;
     logic [7:0] data_out;
