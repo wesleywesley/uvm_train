@@ -9,7 +9,7 @@ class packet extends uvm_sequence_item;
 
     constraint default_range { Data.size() == length; }
 
-    constraint DA_range {DA > 8'hd0; DA < 8'hdf;}
+    //constraint DA_range {DA > 8'hd0; DA < 8'hdf;}
 
     `uvm_object_utils_begin(packet)
         `uvm_field_int(DA, UVM_ALL_ON)

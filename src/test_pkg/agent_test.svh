@@ -38,10 +38,10 @@ class agent_test extends uvm_test;
            end
 
         uvm_config_db#(virtual datain_intf)::set(this, "datain_agt.*", "packet_in", pkt_in);
-        uvm_config_db#(virtual dataout_intf)::set(this, "dataout_agt1.*", "packet_out1", pkt_out1);
-        uvm_config_db#(virtual dataout_intf)::set(this, "dataout_agt2.*", "packet_out2", pkt_out2);
-        uvm_config_db#(virtual dataout_intf)::set(this, "dataout_agt3.*", "packet_out3", pkt_out3);
-        uvm_config_db#(virtual dataout_intf)::set(this, "dataout_agt4.*", "packet_out4", pkt_out4);
+        uvm_config_db#(virtual dataout_intf)::set(this, "dataout_agt1.*", "vif", pkt_out1);
+        uvm_config_db#(virtual dataout_intf)::set(this, "dataout_agt2.*", "vif", pkt_out2);
+        uvm_config_db#(virtual dataout_intf)::set(this, "dataout_agt3.*", "vif", pkt_out3);
+        uvm_config_db#(virtual dataout_intf)::set(this, "dataout_agt4.*", "vif", pkt_out4);
         uvm_config_db#(virtual mem_intf)::set(this, "mem_agt.*", "mem_in", mem_in);
 
         uvm_config_db#(int)::set(this, "datain_agt", "is_active", UVM_ACTIVE);
@@ -63,19 +63,22 @@ class agent_test extends uvm_test;
     task run_phase(uvm_phase phase);
         phase.raise_objection(this);//for datain_sequence run body()
 
-        #100;
+        #500;
 
-        begin
-          datain_sequence datain_seq = new("datain_seq");
-          datain_seq.start(datain_agt.datain_seqer);//run body()
-        end
-        
         begin
           mem_sequence mem_seq = new("mem_seq");
           mem_seq.start(mem_agt.mem_seqer);//run body()
         end
 
         #100;
+
+        begin
+          datain_sequence datain_seq = new("datain_seq");
+          void'( datain_seq.randomize() with { _DA == 8'hbd; }); 
+          datain_seq.start(datain_agt.datain_seqer);//run body()
+        end
+
+        #1000;
 
         phase.drop_objection(this);
     endtask

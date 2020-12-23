@@ -3,6 +3,7 @@ class mem extends uvm_sequence_item;
 
     rand bit [1:0] memory_addr;
     rand bit [7:0] memory_data;
+    rand bit memory_cmd;
 
     constraint memory_addr_range {memory_addr >= 2'h0; memory_addr <= 2'h3;}
 

@@ -30,8 +30,8 @@ module Testbench();
     
         .mem_add        (mem_in.mem_addr),
         .mem_data       (mem_in.mem_data),
-        //.mem_en
-        //.mem_rd_wr
+        .mem_en         (mem_in.mem_en),
+        .mem_rd_wr      (mem_in.mem_rw),
 
         .port0          (pkt_out1.data_out),
         .port1          (pkt_out2.data_out),
@@ -64,9 +64,16 @@ module Testbench();
 
     //reset
     initial begin
+        force pkt_out1.read = 1;
+        force pkt_out2.read = 1;
+        force pkt_out3.read = 1;
+        force pkt_out4.read = 1;
+
         rst_n <= 0;
         #100;
         rst_n <= 1;
+        #100;
+        rst_n <= 0;
     end
 
     //raise/drop replace

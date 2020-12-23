@@ -20,7 +20,7 @@ class dataout_monitor extends uvm_monitor;
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         mon_analysis_port = new("mon_analysis_port", this);
-        if (!uvm_config_db#(virtual dataout_intf)::get(this, "", "packet_out*", pkt_out)) begin
+        if (!uvm_config_db#(virtual dataout_intf)::get(this, "", "vif", pkt_out)) begin
             `uvm_error("GET_DB_ERR", $psprintf("%s fail to get pkt_out virtual interface!", this.get_full_name())) 
         end
     endfunction

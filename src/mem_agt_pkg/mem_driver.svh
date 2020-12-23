@@ -19,6 +19,8 @@ class mem_driver extends uvm_driver#(mem);
         
         mem_in.drv_cb.mem_addr <= 0;
         mem_in.drv_cb.mem_data <= 0;
+        mem_in.drv_cb.mem_en <= 0;
+        mem_in.drv_cb.mem_rw <= 0;
 
         forever begin
             mem mem_pkt;
@@ -36,9 +38,15 @@ class mem_driver extends uvm_driver#(mem);
     virtual task drive_item(mem mem_pkt);
 
         @(mem_in.drv_cb);
-
         mem_in.drv_cb.mem_addr <= mem_pkt.memory_addr;
         mem_in.drv_cb.mem_data <= mem_pkt.memory_data;
+        mem_in.drv_cb.mem_rw <= mem_pkt.memory_cmd;
+        mem_in.drv_cb.mem_en <= 1;
+        @(mem_in.drv_cb);
+        mem_in.drv_cb.mem_data <= 0;
+        mem_in.drv_cb.mem_addr <= 0;
+        mem_in.drv_cb.mem_rw <= 0;
+        mem_in.drv_cb.mem_en <= 0;
 
     endtask
 endclass
