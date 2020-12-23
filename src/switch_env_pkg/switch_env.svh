@@ -8,6 +8,8 @@ class switch_env extends uvm_env;
     dataout_agent dataout_agt4;
     mem_agent mem_agt;
 
+    switch_scb scbin;
+
     virtual datain_intf pkt_in; 
     virtual dataout_intf pkt_out1; 
     virtual dataout_intf pkt_out2; 
@@ -17,6 +19,12 @@ class switch_env extends uvm_env;
 
     function new(string name = "switch_env", uvm_component parent = null);
         super.new(name, parent);
+        scbin = new("switch_scbin", this); 
+    endfunction
+
+    virtual function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
+        datain_agt.datain_mon.mon_analysis_port.connect(scbin.anlse_imp);
     endfunction
 
     virtual function void build_phase(uvm_phase phase);

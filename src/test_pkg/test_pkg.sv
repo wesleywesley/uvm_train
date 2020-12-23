@@ -9,6 +9,7 @@ package test_pkg;
   import datain_agt_pkg::*;
   import dataout_agt_pkg::*;
   import mem_agt_pkg::*;
+  import switch_model_pkg::*;
   import switch_env_pkg::*;
 
   `include "agent_test.svh"

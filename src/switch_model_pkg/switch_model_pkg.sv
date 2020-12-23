@@ -1,5 +1,5 @@
 
-package switch_env_pkg;
+package switch_model_pkg;
 
   import uvm_pkg::*;
   `include "uvm_macros.svh"
@@ -9,8 +9,7 @@ package switch_env_pkg;
   import datain_agt_pkg::*;
   import dataout_agt_pkg::*;
   import mem_agt_pkg::*;
-  import switch_model_pkg::*;
   
-  `include "switch_env.svh"
+  `include "switch_model.svh"
 
-endpackage : switch_env_pkg
+endpackage : switch_model_pkg
