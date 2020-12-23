@@ -4,4 +4,7 @@
 simv
 *fsdb
 *key
-
+*swp
+*swo
+*rc
+*.h
