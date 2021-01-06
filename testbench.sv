@@ -23,7 +23,7 @@ module Testbench();
     switch switch_dut
     (
         .clk            (clk),
-        .reset          (rst_n),
+        .reset          (~rst_n),
 
         .data_status    (pkt_in.packet_valid),
         .data           (pkt_in.data_in),
@@ -69,11 +69,11 @@ module Testbench();
         force pkt_out3.read = 1;
         force pkt_out4.read = 1;
 
-        rst_n <= 0;
-        #100;
         rst_n <= 1;
         #100;
         rst_n <= 0;
+        #100;
+        rst_n <= 1;
     end
 
     //raise/drop replace

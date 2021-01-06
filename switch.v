@@ -114,8 +114,12 @@ parity_delayed = 8'b0000_0000;
 sus_data_in = 1'b0;
 end
 assign busy = sus_data_in;
-always @(data_status) begin : addr_mux
-if (data_status == 1'b1) begin
+
+wire data_status_dly;
+assign #1 data_status_dly = data_status;
+
+always @(data_status_dly) begin : addr_mux
+if (data_status_dly == 1'b1) begin
 case (data_in)
 mem0 : begin
 write_enb_r[0] = 1'b1;
@@ -360,19 +364,21 @@ fifo queue_3 (.clk (clk),
 
 
 
-port_fsm in_port (.clk (clk),
-.reset (reset),
-.write_enb (write_enb),
-.ffee (ffee),
-.hold (hold),
-.data_status (data_status),
-.data_in (data),
-.data_out (data_out_fsm),
-.mem0 (mem[0]),
-.mem1 (mem[1]),
-.mem2 (mem[2]),
-.mem3 (mem[3]),
-.addr (addr));
+port_fsm in_port (
+    .clk (clk),
+    .reset (reset),
+    .write_enb (write_enb),
+    .ffee (ffee),
+    .hold (hold),
+    .data_status (data_status),
+    .data_in (data),
+    .data_out (data_out_fsm),
+    .mem0 (mem[0]),
+    .mem1 (mem[1]),
+    .mem2 (mem[2]),
+    .mem3 (mem[3]),
+    .addr (addr)
+);
 assign port0 = data_out_0; //make note assignment only for
 //consistency with vlog env
 assign port1 = data_out_1;

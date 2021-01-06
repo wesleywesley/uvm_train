@@ -67,6 +67,7 @@ class agent_test extends uvm_test;
 
         begin
           mem_sequence mem_seq = new("mem_seq");
+          void'( mem_seq.randomize() with { DA == 8'hbd; RW==1;}); 
           mem_seq.start(mem_agt.mem_seqer);//run body()
         end
 

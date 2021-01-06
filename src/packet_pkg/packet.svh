@@ -7,9 +7,11 @@ class packet extends uvm_sequence_item;
     rand byte Data[];
     rand byte FCS;
 
-    constraint default_range { Data.size() == length; }
-
+    //constraint default_range { Data.size() == length; }
     //constraint DA_range {DA > 8'hd0; DA < 8'hdf;}
+
+    constraint length_c { length ==  Data.size; }
+    constraint Data_size_c { Data.size inside { [2:255] };  }
 
     `uvm_object_utils_begin(packet)
         `uvm_field_int(DA, UVM_ALL_ON)
